@@ -169,10 +169,28 @@ def agrupar_por_caracteristicas(resultados):
     grupos_ordenados = sorted(grupos.items(), key=lambda x: x[1], reverse=True)
     return grupos_ordenados
 
-# --- Interface Streamlit ---
-st.title("🐶 Simulador de Ninhadas - Spitz Alemão Anão")
+# --- CSS para esconder sidebar no mobile e ajustar área principal ---
+st.markdown(
+    """
+    <style>
+    /* Esconde sidebar para telas menores que 600px */
+    @media (max-width: 600px) {
+        .css-18e3th9 {
+            display: none;
+        }
+        .css-1d391kg {
+            width: 100% !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
+        }
+    }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
 
-menu = st.sidebar.selectbox("Menu", ["Cadastrar Cão", "Catálogo", "Simular Ninhada"])
+# --- Menu horizontal no topo para todos ---
+menu = st.radio("Menu", ["Cadastrar Cão", "Catálogo", "Simular Ninhada"], horizontal=True)
 
 if menu == "Cadastrar Cão":
     st.header("📋 Cadastro de Cão")
